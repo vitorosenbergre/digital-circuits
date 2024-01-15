@@ -1,0 +1,26 @@
+Library ieee;
+Use ieee.std_logic_1164.all;
+
+Entity flipFlopT is port(
+
+	t, clk: in std_logic;
+	q: out std_logic);
+
+End flipFlopT;
+
+Architecture ARQ of flipFlopT is 
+	signal sQAtual, sProxQ: std_logic;
+begin
+ q <=  sQAtual;
+ 
+ Process (clk)
+	Begin 
+		If (clk'event and clk = '1') then 
+			sQatual <=  sProxQ;
+		else
+			sQatual<= sQatual;
+		end if;
+	end process;
+	
+	sProxQ <= not sQatual when (t='1') else sQatual;
+end ARQ;
